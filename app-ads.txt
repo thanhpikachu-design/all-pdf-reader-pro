@@ -1,0 +1,7 @@
+# ============================================================================
+# AUTHORIZED DIGITAL SELLERS (app-ads.txt) FOR GOOGLE ADMOB VERIFICATION
+# Domain: https://thanhpikachu-design.github.io/all-pdf-reader-pro/app-ads.txt
+# When activating Google AdMob in AdConfig.kt, uncomment the line below and
+# replace pub-0000000000000000 with your real Google AdMob Publisher ID:
+# ============================================================================
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

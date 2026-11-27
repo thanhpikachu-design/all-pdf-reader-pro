@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All PDF Reader: Scan &amp; Sign — Đọc, Quét AI, Chuyển Đổi &amp; Ký PDF Toàn Năng</title>
+  <meta name="description" content="Ứng dụng đọc PDF, Word, Excel, PPT, quét tài liệu AI OCR, gộp tách, khóa mật khẩu AES và ký tên điện tử Vector 100% trực tiếp trên thiết bị Android." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="All PDF Reader: Scan &amp; Sign — Pro Document Suite for Android" />
+  <meta property="og:description" content="100% On-Device PDF, Word, Excel &amp; PPT Reader • AI Scanner &amp; OCR • Vector eSign • Merge, Split &amp; Lock PDF • 20+ Languages." />
+  <meta property="og:image" content="assets/og_social_banner_1200x630.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#DC2626" />
+  <link rel="icon" type="image/png" href="assets/icon_web_rounded_256.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "All PDF Reader: Scan & Sign",
+    "operatingSystem": "Android 8.0+",
+    "applicationCategory": "BusinessApplication",
+    "softwareVersion": "1.2.0",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Organization",
+      "name": "Thanh Design Studio",
+      "email": "thanhnm0001@gmail.com",
+      "telephone": "+85252405972"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #070b14;
+      --bg-elev: #0f172a;
+      --card: rgba(19, 28, 49, 0.82);
+      --border: rgba(148, 163, 184, 0.16);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --crimson: #dc2626;
+      --crimson-light: #f87171;
+      --emerald: #10b981;
+    }
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background:
+        radial-gradient(circle at 85% 8%, rgba(220, 38, 38, 0.22), transparent 40%),
+        radial-gradient(circle at 12% 35%, rgba(37, 99, 235, 0.14), transparent 42%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 11, 20, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      gap: 16px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.08rem; }
+    .brand img { width: 40px; height: 40px; border-radius: 10px; }
+    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 0.94rem; color: var(--muted); }
+    .nav-links a:hover { color: #fff; }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.86rem;
+    }
+    .lang-btn:hover { border-color: var(--crimson-light); }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.96rem;
+      box-shadow: 0 12px 28px rgba(220, 38, 38, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(220, 38, 38, 0.48); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(248, 250, 252, 0.22);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255, 255, 255, 0.11); border-color: var(--crimson-light); }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 44px;
+      align-items: center;
+      padding: 68px 0 56px;
+    }
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      color: #34d399;
+      padding: 6px 15px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 4.4vw, 3.55rem);
+      line-height: 1.13;
+      margin: 0 0 18px;
+      letter-spacing: -0.03em;
+    }
+    .gradient-txt {
+      background: linear-gradient(95deg, #f87171, #fb923c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p { font-size: 1.1rem; color: var(--muted); margin: 0 0 28px; max-width: 580px; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 28px; }
+    .trust-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+    .stat strong { display: block; font-size: 1.32rem; color: #fff; }
+    .stat span { font-size: 0.82rem; color: var(--muted); }
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+    .hero-visual img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 28px;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.6), 0 0 55px rgba(220, 38, 38, 0.24);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    /* Section Headers */
+    section { padding: 64px 0; }
+    .sec-head { text-align: center; max-width: 720px; margin: 0 auto 42px; }
+    .sec-head h2 { font-size: clamp(1.75rem, 3vw, 2.4rem); margin: 0 0 10px; letter-spacing: -0.02em; }
+    .sec-head p { color: var(--muted); margin: 0; font-size: 1.02rem; }
+
+    /* Video Showcase */
+    .video-tabs { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+    .vtab {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .vtab.active { background: rgba(220, 38, 38, 0.18); border-color: var(--crimson-light); color: #fff; }
+    .video-frame {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 14px;
+      max-width: 960px;
+      margin: 0 auto;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+    .video-frame video {
+      width: 100%;
+      max-height: 540px;
+      border-radius: 16px;
+      background: #000;
+      display: block;
+    }
+
+    /* Bento Features */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+      gap: 18px;
+    }
+    .bento-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .bento-card:hover { transform: translateY(-4px); border-color: rgba(248, 113, 113, 0.45); }
+    .bento-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+      background: rgba(220, 38, 38, 0.15);
+    }
+    .bento-card h3 { margin: 0 0 8px; font-size: 1.12rem; }
+    .bento-card p { margin: 0; font-size: 0.92rem; color: var(--muted); }
+
+    /* Screenshot Carousel */
+    .shots-strip {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 8px 4px 22px;
+      scroll-snap-type: x mandatory;
+    }
+    .shots-strip img {
+      height: 470px;
+      width: auto;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      scroll-snap-align: center;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s;
+    }
+    .shots-strip img:hover { transform: scale(1.02); }
+
+    /* Comparison Table */
+    .comp-wrap {
+      overflow-x: auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 8px;
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 580px; }
+    th, td { padding: 15px 18px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { color: #fff; font-size: 0.96rem; }
+    td { color: var(--muted); font-size: 0.93rem; }
+    td.highlight, th.highlight { color: #fff; font-weight: 700; background: rgba(220, 38, 38, 0.09); }
+    tr:last-child td { border-bottom: none; }
+
+    /* FAQ */
+    .faq-list { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
+    details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 20px;
+    }
+    summary { font-weight: 700; cursor: pointer; font-size: 1rem; }
+    details p { margin: 10px 0 0; color: var(--muted); font-size: 0.94rem; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0 56px;
+      margin-top: 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .foot-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+    .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-links a:hover { color: #fff; }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 42px; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .cta-row { justify-content: center; }
+      .trust-stats { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <img src="assets/icon_web_rounded_256.png" alt="All PDF Reader Icon" />
+        <span>All PDF Reader Pro</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#video" data-vi="Video Demo" data-en="Video Demo">Video Demo</a>
+        <a href="#features" data-vi="Tính năng" data-en="Features">Tính năng</a>
+        <a href="#screenshots" data-vi="Giao diện" data-en="Screenshots">Giao diện</a>
+        <a href="#compare" data-vi="Ưu điểm" data-en="Why Pro">Ưu điểm</a>
+        <a href="privacy/" data-vi="Bảo mật" data-en="Privacy Policy">Bảo mật</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="lang-btn" id="langSwitch" onclick="toggleLang()">🇺🇸 English</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="pill-badge"
+             data-vi="✓ Xử Lý 100% Offline Trên Máy • Nhẹ 11MB • 20+ Ngôn Ngữ"
+             data-en="✓ 100% On-Device Processing • Lightweight 11MB • 20+ Languages">
+          ✓ Xử Lý 100% Offline Trên Máy • Nhẹ 11MB • 20+ Ngôn Ngữ
+        </div>
+        <h1>
+          <span data-vi="Trạm Tài Liệu Di Động:" data-en="All-in-One Document Suite:">Trạm Tài Liệu Di Động:</span><br />
+          <span class="gradient-txt" data-vi="Đọc, Quét AI &amp; Ký PDF" data-en="Read, AI Scan &amp; eSign PDF">Đọc, Quét AI &amp; Ký PDF</span>
+        </h1>
+        <p data-vi="Mở tức thì mọi tệp PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX). Quét tài liệu tự cắt viền AI, trích xuất chữ OCR, tô sáng, ký hợp đồng Vector sắc nét, gộp tách &amp; đặt mật khẩu bảo mật hoàn toàn trên thiết bị."
+           data-en="Instantly open PDF, Word (DOCX), Excel (XLSX) &amp; PowerPoint (PPTX). Scan paper with AI auto-crop, extract OCR text, highlight, sign contracts in crisp vector quality, merge, split &amp; lock PDFs 100% on your device.">
+          Mở tức thì mọi tệp PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX). Quét tài liệu tự cắt viền AI, trích xuất chữ OCR, tô sáng, ký hợp đồng Vector sắc nét, gộp tách &amp; đặt mật khẩu bảo mật hoàn toàn trên thiết bị.
+        </p>
+        <div class="cta-row">
+          <a class="btn-primary" href="https://play.google.com/store/apps/details?id=com.thanhdesign.pdfconverterpro" target="_blank" rel="noopener">
+            ▶ <span data-vi="Tải trên Google Play" data-en="Get it on Google Play">Tải trên Google Play</span>
+          </a>
+          <a class="btn-outline" href="#video">
+            🎬 <span data-vi="Xem Video Thực Tế" data-en="Watch Promo Video">Xem Video Thực Tế</span>
+          </a>
+        </div>
+        <div class="trust-stats">
+          <div class="stat">
+            <strong>12+</strong>
+            <span data-vi="Công cụ PDF chuyên sâu" data-en="Pro PDF Utilities">Công cụ PDF chuyên sâu</span>
+          </div>
+          <div class="stat">
+            <strong>20+</strong>
+            <span data-vi="Ngôn ngữ tự nhận diện" data-en="Offline Languages">Ngôn ngữ tự nhận diện</span>
+          </div>
+          <div class="stat">
+            <strong>100%</strong>
+            <span data-vi="Bảo mật trên thiết bị" data-en="On-Device Privacy">Bảo mật trên thiết bị</span>
+          </div>
+          <div class="stat">
+            <strong>60fps</strong>
+            <span data-vi="Mượt mà &amp; Giữ nét Vector" data-en="Smooth Vector Engine">Mượt mà &amp; Giữ nét Vector</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/phone_01.png" alt="All PDF Reader Pro App Preview" />
+      </div>
+    </section>
+
+    <!-- VIDEO SHOWCASE -->
+    <section id="video">
+      <div class="sec-head">
+        <div class="pill-badge"
+             data-vi="🎙️ Thuyết Minh Giọng Đọc AI Neural Chuẩn Studio (Tiếng Việt &amp; Quốc Tế)"
+             data-en="🎙️ Studio Neural AI Voiceover Narration (English &amp; Vietnamese)">
+          🎙️ Thuyết Minh Giọng Đọc AI Neural Chuẩn Studio (Tiếng Việt &amp; Quốc Tế)
+        </div>
+        <h2 data-vi="Trải Nghiệm Trực Quan Qua Bộ Video AI" data-en="Experience All PDF Reader Pro with AI Narration">Trải Nghiệm Trực Quan Qua Bộ Video AI</h2>
+        <p data-vi="Bật loa để nghe giọng thuyết minh AI thế hệ mới giới thiệu trọn bộ tính năng trên cả khung ngang YouTube 16:9 và khung dọc Shorts/TikTok 9:16."
+           data-en="Turn on sound for crystal-clear Neural AI voiceover across widescreen YouTube 16:9, vertical Shorts/Reels 9:16, and our Google Play privacy walkthrough.">
+          Bật loa để nghe giọng thuyết minh AI thế hệ mới giới thiệu trọn bộ tính năng trên cả khung ngang YouTube 16:9 và khung dọc Shorts/TikTok 9:16.
+        </p>
+      </div>
+      <div class="video-tabs">
+        <button class="vtab active" id="tabVi169" onclick="switchVideo('assets/promo_video_vi_1920x1080.mp4', this)"
+                data-vi="🇻🇳 Promo 16:9 (Giọng AI Việt)" data-en="🇻🇳 16:9 Promo (Vietnamese AI)">🇻🇳 Promo 16:9 (Giọng AI Việt)</button>
+        <button class="vtab" id="tabEn169" onclick="switchVideo('assets/promo_video_youtube_1920x1080.mp4', this)"
+                data-vi="🇺🇸 Promo 16:9 (Giọng AI Anh)" data-en="🇺🇸 16:9 Official Promo (English AI)">🇺🇸 Promo 16:9 (Giọng AI Anh)</button>
+        <button class="vtab" onclick="switchVideo('assets/promo_shorts_vi_1080x1920.mp4', this)"
+                data-vi="📱 Shorts/TikTok 9:16 (Giọng AI Việt)" data-en="📱 9:16 Shorts (Vietnamese AI)">📱 Shorts/TikTok 9:16 (Giọng AI Việt)</button>
+        <button class="vtab" onclick="switchVideo('assets/promo_shorts_vertical_1080x1920.mp4', this)"
+                data-vi="🌎 Shorts/Reels 9:16 (Giọng AI Anh)" data-en="🌎 9:16 Shorts (English AI)">🌎 Shorts/Reels 9:16 (Giọng AI Anh)</button>
+        <button class="vtab" onclick="switchVideo('assets/play_console_permission_walkthrough.mp4', this)"
+                data-vi="🛡️ Video Xét Duyệt Quyền Play Console" data-en="🛡️ Play Console Reviewer Walkthrough">🛡️ Video Xét Duyệt Quyền Play Console</button>
+      </div>
+      <div class="video-frame">
+        <video id="mainVideo" controls preload="metadata" poster="assets/feature_graphic_1024x500.png">
+          <source src="assets/promo_video_vi_1920x1080.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </section>
+
+    <!-- 12+ FEATURES BENTO GRID -->
+    <section id="features">
+      <div class="sec-head">
+        <h2 data-vi="Trọn Bộ 12+ Công Cụ Văn Phòng Trong 1 Ứng Dụng" data-en="12+ Essential Document Tools in One App">Trọn Bộ 12+ Công Cụ Văn Phòng Trong 1 Ứng Dụng</h2>
+        <p data-vi="Không cần cài đặt rời rạc nhiều ứng dụng nặng máy — mọi thao tác tài liệu đều sẵn sàng chỉ với 1 chạm."
+           data-en="Replace half a dozen heavy apps with one sleek, native Kotlin workstation.">
+          Không cần cài đặt rời rạc nhiều ứng dụng nặng máy — mọi thao tác tài liệu đều sẵn sàng chỉ với 1 chạm.
+        </p>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-card">
+          <div class="bento-icon">📄</div>
+          <h3 data-vi="Đọc PDF, Word, Excel &amp; PPT" data-en="All-in-One Office &amp; PDF Reader">Đọc PDF, Word, Excel &amp; PPT</h3>
+          <p data-vi="Mở mượt các tệp PDF lớn, bảng biểu DOCX/XLSX, slide PPTX và TXT kèm chế độ đọc ban đêm dịu mắt."
+             data-en="Smoothly view large PDFs, formatted DOCX/XLSX tables, PPTX slides, and TXT with Eye-Care Night Mode.">
+            Mở mượt các tệp PDF lớn, bảng biểu DOCX/XLSX, slide PPTX và TXT kèm chế độ đọc ban đêm dịu mắt.
+          </p>
+        </div>
+        <div class="bento-card">
+          <div class="bento-icon">✍️</div>
+          <h3 data-vi="Ký Tên Điện Tử Vector (eSign)" data-en="Vector Electronic Signature">Ký Tên Điện Tử Vector (eSign)</h3>
+          <p data-vi="Vẽ chữ ký tay 4 màu mực hoặc nhập từ ảnh, kéo phóng to/thu nhỏ 1 ngón tay và lưu giữ nguyên độ nét Vector."
+             data-en="Draw cursive signatures or import from camera, resize with 1 finger, and export razor-sharp vector PDFs.">
+            Vẽ chữ ký tay 4 màu mực hoặc nhập từ ảnh, kéo phóng to/thu nhỏ 1 ngón tay và lưu giữ nguyên độ nét Vector.
+          </p>
+        </div>
+        <div class="bento-card">
+          <div class="bento-icon">📷</div>
+          <h3 data-vi="Máy Quét AI &amp; Nhận Chữ OCR" data-en="AI Auto-Crop Scanner &amp; OCR">Máy Quét AI &amp; Nhận Chữ OCR</h3>
+          <p data-vi="Tự động phát hiện mép giấy, khử bóng nghiêng bằng ML Kit NPU trên máy và bóc tách văn bản OCR không cần mạng."
+             data-en="Hardware-accelerated edge detection, perspective correction, and offline text recognition via on-device ML Kit.">
+            Tự động phát hiện mép giấy, khử bóng nghiêng bằng ML Kit NPU trên máy và bóc tách văn bản OCR không cần mạng.
+          </p>
+        </div>
+        <div class="bento-card">
+          <div class="bento-icon">🔗</div>
+          <h3 data-vi="Gộp &amp; Tách PDF 1 Chạm" data-en="1-Tap Lossless Merge &amp; Split">Gộp &amp; Tách PDF 1 Chạm</h3>
+          <p data-vi="Chọn nhanh các tệp PDF ngay trong màn hình công cụ để nối nhiều tệp hoặc trích xuất dải trang tùy ý."
+             data-en="Pick device PDFs directly inside the tool to combine multiple documents or extract custom page ranges.">
+            Chọn nhanh các tệp PDF ngay trong màn hình công cụ để nối nhiều tệp hoặc trích xuất dải trang tùy ý.
+          </p>
+        </div>
+        <div class="bento-card">
+          <div class="bento-icon">🔒</div>
+          <h3 data-vi="Khóa Mật Khẩu AES &amp; Đóng Dấu" data-en="AES-128 Password &amp; Watermark">Khóa Mật Khẩu AES &amp; Đóng Dấu</h3>
+          <p data-vi="Mã hóa hợp đồng bằng chuẩn AES-128, gỡ mật khẩu PDF đã biết và đóng dấu chữ chìm hỗ trợ đầy đủ Tiếng Việt."
+             data-en="Protect sensitive PDFs with AES-128 encryption, unlock owned PDFs, and stamp full-Unicode text watermarks.">
+            Mã hóa hợp đồng bằng chuẩn AES-128, gỡ mật khẩu PDF đã biết và đóng dấu chữ chìm hỗ trợ đầy đủ Tiếng Việt.
+          </p>
+        </div>
+        <div class="bento-card">
+          <div class="bento-icon">🌍</div>
+          <h3 data-vi="20+ Ngôn Ngữ &amp; Màn Hình Lớn" data-en="20+ Languages &amp; Tablet Ready">20+ Ngôn Ngữ &amp; Màn Hình Lớn</h3>
+          <p data-vi="Tự động khớp ngôn ngữ máy khách ngay lần mở đầu tiên, hỗ trợ RTL tiếng Ả Rập và tối ưu cho cả Máy tính bảng."
+             data-en="Automatically matches device locale across 20+ languages including Arabic RTL and adaptive tablet layouts.">
+            Tự động khớp ngôn ngữ máy khách ngay lần mở đầu tiên, hỗ trợ RTL tiếng Ả Rập và tối ưu cho cả Máy tính bảng.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREENSHOTS GALLERY -->
+    <section id="screenshots">
+      <div class="sec-head">
+        <h2 data-vi="Bộ Giao Diện Chuẩn Sắc Nét Trên Thực Tế" data-en="Clean, Intuitive Material 3 Interface">Bộ Giao Diện Chuẩn Sắc Nét Trên Thực Tế</h2>
+        <p data-vi="Thiết kế tối giản, tương phản cao ở cả Chế độ Sáng và Chế độ Tối."
+           data-en="Crafted for speed, clarity, and effortless one-handed operation.">
+          Thiết kế tối giản, tương phản cao ở cả Chế độ Sáng và Chế độ Tối.
+        </p>
+      </div>
+      <div class="shots-strip">
+        <img src="assets/phone_01.png" alt="Screenshot 1 - Document Hub" loading="lazy" />
+        <img src="assets/phone_02.png" alt="Screenshot 2 - Annotate & eSign" loading="lazy" />
+        <img src="assets/phone_03.png" alt="Screenshot 3 - Draw Signature" loading="lazy" />
+        <img src="assets/phone_04.png" alt="Screenshot 4 - Split & Merge PDF" loading="lazy" />
+        <img src="assets/phone_05.png" alt="Screenshot 5 - Office Viewer" loading="lazy" />
+        <img src="assets/phone_06.png" alt="Screenshot 6 - 12+ PDF Tools" loading="lazy" />
+        <img src="assets/phone_07.png" alt="Screenshot 7 - Night Reading Mode" loading="lazy" />
+        <img src="assets/phone_08.png" alt="Screenshot 8 - 20+ Global Languages" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section id="compare">
+      <div class="sec-head">
+        <h2 data-vi="Vì Sao Chọn All PDF Reader Pro?" data-en="Why Choose All PDF Reader Pro?">Vì Sao Chọn All PDF Reader Pro?</h2>
+      </div>
+      <div class="comp-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th data-vi="Tiêu chí" data-en="Capability">Tiêu chí</th>
+              <th class="highlight">All PDF Reader Pro</th>
+              <th data-vi="Các ứng dụng PDF thông thường" data-en="Typical PDF Apps">Các ứng dụng PDF thông thường</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-vi="Quyền riêng tư tài liệu" data-en="Document Privacy">Quyền riêng tư tài liệu</td>
+              <td class="highlight" data-vi="✓ 100% Trên máy (Không tải lên mây)" data-en="✓ 100% On-Device (Zero Cloud Upload)">✓ 100% Trên máy (Không tải lên mây)</td>
+              <td data-vi="Phải tải hợp đồng lên máy chủ bên thứ ba" data-en="Uploads private files to external servers">Phải tải hợp đồng lên máy chủ bên thứ ba</td>
+            </tr>
+            <tr>
+              <td data-vi="Chất lượng chữ ký eSign" data-en="eSign Export Quality">Chất lượng chữ ký eSign</td>
+              <td class="highlight" data-vi="✓ Giữ nguyên lớp chữ Vector sắc nét" data-en="✓ Lossless Vector Text Preserved">✓ Giữ nguyên lớp chữ Vector sắc nét</td>
+              <td data-vi="Biến cả trang PDF thành ảnh mờ, nặng dung lượng" data-en="Flattens pages into blurry raster images">Biến cả trang PDF thành ảnh mờ, nặng dung lượng</td>
+            </tr>
+            <tr>
+              <td data-vi="Đọc Word / Excel / PPT Offline" data-en="Offline DOCX / XLSX / PPTX">Đọc Word / Excel / PPT Offline</td>
+              <td class="highlight" data-vi="✓ Có sẵn + Xuất PDF 1 chạm" data-en="✓ Built-in + 1-Tap Save to PDF">✓ Có sẵn + Xuất PDF 1 chạm</td>
+              <td data-vi="Chỉ đọc được mỗi PDF hoặc bắt mua gói tuần" data-en="PDF-only or locked behind weekly paywalls">Chỉ đọc được mỗi PDF hoặc bắt mua gói tuần</td>
+            </tr>
+            <tr>
+              <td data-vi="Dung lượng cài đặt" data-en="Install Size">Dung lượng cài đặt</td>
+              <td class="highlight">✓ ~11.5 MB</td>
+              <td>80 MB – 160 MB</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="sec-head">
+        <h2 data-vi="Câu Hỏi Thường Gặp" data-en="Frequently Asked Questions">Câu Hỏi Thường Gặp</h2>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary data-vi="Tài liệu và hợp đồng của tôi có bị tải lên máy chủ không?"
+                   data-en="Are my contracts or PDF files ever uploaded to any server?">
+            Tài liệu và hợp đồng của tôi có bị tải lên máy chủ không?
+          </summary>
+          <p data-vi="Tuyệt đối không. Toàn bộ bộ máy đọc PDF, giải mã Office, quét AI OCR, ký tên và mã hóa mật khẩu AES-128 đều chạy 100% trực tiếp trên vi xử lý điện thoại của bạn."
+             data-en="Never. Every single PDF rendering, Office parsing, AI OCR recognition, electronic signature, and AES-128 encryption operation runs 100% locally on your Android device.">
+            Tuyệt đối không. Toàn bộ bộ máy đọc PDF, giải mã Office, quét AI OCR, ký tên và mã hóa mật khẩu AES-128 đều chạy 100% trực tiếp trên vi xử lý điện thoại của bạn.
+          </p>
+        </details>
+        <details>
+          <summary data-vi="Ứng dụng có cần kết nối mạng Internet để làm việc không?"
+                   data-en="Does the app work completely offline without Internet?">
+            Ứng dụng có cần kết nối mạng Internet để làm việc không?
+          </summary>
+          <p data-vi="Có! Mọi tính năng đọc, quét, chuyển đổi ảnh/Office sang PDF, gộp, tách, nén, khóa mật khẩu và đổi 20 ngôn ngữ đều hoạt động hoàn toàn Offline (chỉ công cụ chuyển trang Web sang PDF mới cần tải địa chỉ web bạn nhập)."
+             data-en="Yes! Reading, scanning, converting Images/Office to PDF, merging, splitting, compressing, locking, and switching across all 20+ languages work 100% offline (only Web-to-PDF uses network when loading a URL you enter).">
+            Có! Mọi tính năng đọc, quét, chuyển đổi ảnh/Office sang PDF, gộp, tách, nén, khóa mật khẩu và đổi 20 ngôn ngữ đều hoạt động hoàn toàn Offline (chỉ công cụ chuyển trang Web sang PDF mới cần tải địa chỉ web bạn nhập).
+          </p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot-inner">
+      <div>
+        <strong>All PDF Reader: Scan &amp; Sign</strong> (<code>com.thanhdesign.pdfconverterpro</code>)<br />
+        <span>&copy; 2026 Thanh Design Studio. All rights reserved.</span>
+      </div>
+      <div class="foot-links">
+        <a href="privacy/" data-vi="Chính sách Quyền riêng tư" data-en="Privacy Policy">Chính sách Quyền riêng tư</a>
+        <a href="app-ads.txt">app-ads.txt</a>
+        <a href="mailto:thanhnm0001@gmail.com">✉️ thanhnm0001@gmail.com</a>
+        <a href="tel:+85252405972">📞 +852 5240 5972</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = "vi";
+    function applyLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-vi][data-en]").forEach(el => {
+        el.innerHTML = el.getAttribute("data-" + lang);
+      });
+      document.getElementById("langSwitch").textContent = lang === "vi" ? "🇺🇸 English" : "🇻🇳 Tiếng Việt";
+      const v = document.getElementById("mainVideo");
+      if (v && v.paused && v.currentTime === 0) {
+        document.querySelectorAll(".vtab").forEach(b => b.classList.remove("active"));
+        if (lang === "en") {
+          v.src = "assets/promo_video_youtube_1920x1080.mp4";
+          document.getElementById("tabEn169").classList.add("active");
+        } else {
+          v.src = "assets/promo_video_vi_1920x1080.mp4";
+          document.getElementById("tabVi169").classList.add("active");
+        }
+      }
+    }
+    function toggleLang() {
+      applyLang(currentLang === "vi" ? "en" : "vi");
+    }
+    function switchVideo(src, btn) {
+      document.querySelectorAll(".vtab").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const v = document.getElementById("mainVideo");
+      v.src = src;
+      v.play().catch(() => {});
+    }
+    if (navigator.language && !navigator.language.toLowerCase().startsWith("vi")) {
+      applyLang("en");
+    }
+  </script>
+</body>
+</html>
